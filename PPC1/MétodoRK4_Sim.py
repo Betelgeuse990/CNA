@@ -1,11 +1,6 @@
 # PPC-1 Cálculo Numérico Aplicado. Ministrada pelo Prof. Rafael Gabler
 # Mét. RK4 para resolver problema de sedimentação de uma esfera em baixo Reynolds.
 
-"""
-Professor, tudo certo? Ainda não estou com o meu github pronto. Tentei explorar a plataforma há um tempo,
-mas eu tive muita dificuldade. Vou pegar o jeito, mas ainda não tá pronto. Libero logo, logo.
-"""
-
 import os
 import math
 import matplotlib.pyplot as plt
