@@ -15,10 +15,9 @@ Este repositório contém implementações desenvolvidas para a disciplina de CN
 - Math (no momento, apenas para constantes matemáticas)
 
 ## Estrutura do Repositório
+```text
+.
 ├── ppc-01/
-
 ├── ppc-02/
-
 ├── ...
-
 └── README.md
