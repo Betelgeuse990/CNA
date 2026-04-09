@@ -17,7 +17,7 @@ Este repositório contém implementações desenvolvidas para a disciplina de CN
 ## Estrutura do Repositório
 ```text
 .
-├── PPC-01/
-├── PPC-02/
+├── PPC1/
+├── PPC2/
 ├── ...
 └── README.md
