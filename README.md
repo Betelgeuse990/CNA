@@ -68,6 +68,13 @@ Cada prática é organizada com foco em:
 
 Sempre que necessário, gráficos, imagens, relatórios e outros resultados de processamento são armazenados dentro do diretório correspondente à prática.
 
+## Bibliografia geral
+
+- CHAPRA, Steven C.; CANALE, Raymond P. **Métodos Numéricos para Engenharia**. 5. ed. McGraw-Hill, 2008.
+- GONTIJO, Rafael Gabler. **Notas de aula do curso de Cálculo Numérico Aplicado**. Universidade de Brasília, 2026.
+- HARRIS, Charles R. et al. **Array programming with NumPy**. *Nature*, v. 585, p. 357–362, 2020.
+- HUNTER, John D. **Matplotlib: A 2D graphics environment**. *Computing in Science & Engineering*, v. 9, n. 3, p. 90–95, 2007.
+  
 ## Observações finais
 
 Este repositório está em desenvolvimento contínuo ao longo do semestre e será atualizado à medida que novas práticas forem implementadas, refinadas e documentadas.
