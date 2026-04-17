@@ -15,6 +15,9 @@ Quanto à pasta "Em Sala", contém arquivos Python soltos que foram desenvolvido
 - Python 3.10+
 - Matplotlib
 - Math
+- CMath
+- Numpy
+- Pandas
 - Outras bibliotecas podem ter sido usadas para programas Em Sala, para fins excepcionais.
 
 ## Estrutura do Repositório
