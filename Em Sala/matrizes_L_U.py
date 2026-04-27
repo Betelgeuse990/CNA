@@ -1,7 +1,7 @@
 import random as r
 import numpy as np
 
-size = 10    # Tamanho da matriz desejada
+size = 3    # Tamanho da matriz desejada
 
 err = 1e-10  # Erro tolerável para considerar algo como 0
 err_eliminacao = 0.0  # Erro da eliminação progressiva
@@ -13,10 +13,23 @@ A = np.array([
 
 B = np.array([r.random() for i in range(size)])  # Vetor B
 
+def initial_sys():
+  id = 0
+  for line in A:
+    for idx, el in enumerate(line):
+      print(f'{el}*x{idx + 1}', end='')
+      if idx + 1 != len(line):
+        print(' + ', end='')
+      else:
+        print(f' = {B[id]}')
+    id += 1
+
 D = np.zeros(size)  # Vector D
 X = np.zeros(size)  # Vector X
 
 n = len(A)
+
+initial_sys()  # Imprime o sistema linear
 
 # --- Eliminação progressiva =====================
 def eliminacao(matrix):
@@ -35,7 +48,7 @@ def eliminacao(matrix):
 
       return L, U
 
-
+  
 L, U = eliminacao(A)
 _A = L @ U  # Teoricamente, matriz A
 
@@ -70,6 +83,7 @@ for i in range(n - 1, 0, -1):
     soma -= U[i][j] * X[j]
   X[i] = soma / U[i][i]
 
+print('\nResultado:')
 for id, line in enumerate(X):  # Resposta final
   print(f'x{id + 1}\t' + str(line))
 print('_' * 30)
