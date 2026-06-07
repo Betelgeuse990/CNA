@@ -58,10 +58,7 @@ $$
 O novo ponto é calculado por
 
 $$
-\mathbf{x}_{k+1}
-================
-
-\mathbf{x}_k+h_k\mathbf{p}_k.
+\mathbf{x}_{k+1}=\mathbf{x}_k+h_k\mathbf{p}_k.
 $$
 
 Esse método normalmente apresenta uma trajetória em **zigue-zague**, pois a direção de busca é substituída pelo gradiente atual em cada iteração.
@@ -77,12 +74,7 @@ $$
 Nas iterações seguintes, a direção incorpora informações da direção anterior:
 
 $$
-\mathbf{p}_{k+1}
-================
-
-\nabla f(\mathbf{x}_{k+1})
-+
-\beta_k\mathbf{p}_k,
+\mathbf{p}_{k+1}=\nabla f(\mathbf{x}_{k+1})+\beta_k\mathbf{p}_k,
 $$
 
 em que
