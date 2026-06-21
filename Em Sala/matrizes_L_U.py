@@ -11,7 +11,14 @@ A = np.array([
     [r.random() for i in range(size)] for j in range(size)  # Matriz A
 ])
 
+#A = np.array([  # Prova real se o X = [1, 2, 3] será encontrado
+#  [1, 2, 5],
+#  [2, 2, 2],
+#  [3, 10, 1]
+#])
+
 B = np.array([r.random() for i in range(size)])  # Vetor B
+# B = np.array([20, 12, 26])  # corrigido: era 22, mas para X=[1,2,3] dá 20
 
 def initial_sys():
   id = 0
@@ -34,19 +41,19 @@ initial_sys()  # Imprime o sistema linear
 # --- Eliminação progressiva =====================
 def eliminacao(matrix):
   _n = len(matrix)
-  U = np.array(A[:])  # A tal matriz "U"
+  U = np.array(matrix, dtype=float)  # A tal matriz "U" (cópia em float)
   L = np.array([[1.0 if i == j else 0.0 for j in range(_n)] for i in range(_n)])    # A tal matriz "L", identidade
-  
-  for k in range(n - 1):
-      for i in range(k + 1, n):
+
+  for k in range(_n - 1):
+      for i in range(k + 1, _n):
         fator = U[i][k] / U[k][k]   # fator
-          
+
         L[i][k] = fator
-        
-        for j in range(k, n):
+
+        for j in range(k, _n):
           U[i][j] = U[i][j] - fator * U[k][j]  # eliminando [A]
 
-      return L, U
+  return L, U
 
   
 L, U = eliminacao(A)
@@ -64,22 +71,20 @@ err_eliminacao = tot_err / n ** 2.0
 if err_eliminacao > err:
   raise ValueError(f'\nOps... Erro na operação excede cota máxima definida: erro máx: {err} // erro obtido: {err_eliminacao}.')
 
-# --- Substituição regressiva =====================
-n -= 1  # Ajustando os índices
-
-# Resolvendo {L} * {D} = {B}
-D[n] = B[n] / L[n][n]
-for i in range(n - 1, 0, -1):
+# --- Substituições ===============================
+# Resolvendo {L} * {D} = {B}  (substituição PROGRESSIVA, de cima para baixo)
+D[0] = B[0] / L[0][0]
+for i in range(1, n):
   soma = B[i]
-  for j in range(i + 1, n + 1):
+  for j in range(i):                # j vai de 0 até i-1
     soma -= L[i][j] * D[j]
   D[i] = soma / L[i][i]
 
-# Resolvendo {U} * {X} = {D}
-X[n] = D[n] / U[n][n]
-for i in range(n - 1, 0, -1):
+# Resolvendo {U} * {X} = {D}  (substituição REGRESSIVA, de baixo para cima)
+X[n - 1] = D[n - 1] / U[n - 1][n - 1]
+for i in range(n - 2, -1, -1):      # vai até i=0 inclusive
   soma = D[i]
-  for j in range(i + 1, n + 1):
+  for j in range(i + 1, n):
     soma -= U[i][j] * X[j]
   X[i] = soma / U[i][i]
 
