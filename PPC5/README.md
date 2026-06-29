@@ -60,7 +60,7 @@ $$
 $$
 
 $$
-\frac{dy_3}{d\eta}
+\frac{dy_3}{d\eta} = 
 -\frac{1}{2}y_1y_3.
 $$
 
@@ -96,7 +96,7 @@ em que $\varepsilon$ é a tolerância definida pelo usuário.
 
 ### Método do Tiro
 
-Como a condição $f'(\infty)=1$ não é conhecida em $\eta=0$, o valor inicial $f''(0)$ é tratado como um chute.
+Como a condição $f'(\infty)=1$ não é imposta em $\eta=0$, o valor inicial $f''(0)$ é tratado como um chute.
 
 Para cada valor de $s$:
 
@@ -110,10 +110,10 @@ Para cada valor de $s$:
 A atualização do parâmetro de tiro é feita por:
 
 $$
-s_{k+1} = s_k
-$$
-
-$$
+s_{k+1}
+=
+s_k
+-
 E(s_k)
 \frac{s_k-s_{k-1}}
 {E(s_k)-E(s_{k-1})}.
