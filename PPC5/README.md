@@ -369,18 +369,14 @@ $$
 Para a espessura de camada limite definida por $u/U_\infty=0.99$, a correlação clássica é:
 
 $$
-\frac{\delta}{x}
-================
-
+\frac{\delta}{x} =
 \frac{4.92}{\sqrt{Re_x}}.
 $$
 
 Como:
 
 $$
-\frac{\delta}{x}
-================
-
+\frac{\delta}{x} =
 \frac{\eta_{99}}{\sqrt{Re_x}},
 $$
 
