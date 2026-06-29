@@ -110,13 +110,7 @@ Para cada valor de $s$:
 A atualização do parâmetro de tiro é feita por:
 
 $$
-s_{k+1}
-=
-s_k
--
-E(s_k)
-\frac{s_k-s_{k-1}}
-{E(s_k)-E(s_{k-1})}.
+s_{k+1} = s_k - E(s_k)\frac{s_k-s_{k-1}}{E(s_k)-E(s_{k-1})}
 $$
 
 ### Método de Runge-Kutta de quarta ordem
