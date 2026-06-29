@@ -1,0 +1,29 @@
+PPC #5 - Solução Numérica da Equação de Blasius
+==========================================================
+
+Parâmetros numéricos
+----------------------------------------------------------
+Passo de integração delta_eta: 1.0000000000e-03
+eta_max: 10.0000000000
+Tolerância: 1.0000000000e-08
+
+Método do Tiro
+----------------------------------------------------------
+f''(0) convergido: 0.3320573372
+Valor de referência de f''(0): 0.3320570000
+Erro absoluto em f''(0): 3.3720401543e-07
+Iterações da secante: 4
+Erro final do tiro: 6.2638783049e-13
+f'(eta_max): 1.0000000000
+
+Camada limite
+----------------------------------------------------------
+eta_99: 4.9099894100
+C_delta = eta_99: 4.9099894100
+Referência para C_delta: 4.9200000000
+Erro absoluto em C_delta: 1.0010590006e-02
+
+Atrito na parede
+----------------------------------------------------------
+Re_x: 3.3333333333e+05
+C_f: 1.1502803581e-03
