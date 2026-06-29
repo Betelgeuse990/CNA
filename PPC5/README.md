@@ -110,11 +110,10 @@ Para cada valor de $s$:
 A atualização do parâmetro de tiro é feita por:
 
 $$
-s_{k+1}
-=======
+s_{k+1} = s_k
+$$
 
-## s_k
-
+$$
 E(s_k)
 \frac{s_k-s_{k-1}}
 {E(s_k)-E(s_{k-1})}.
@@ -143,9 +142,7 @@ $$
 e a atualização é dada por:
 
 $$
-\mathbf{y}_{i+1}
-================
-
+\mathbf{y}_{i+1} =
 \mathbf{y}_i+
 \frac{K_1+2K_2+2K_3+K_4}{6}.
 $$
