@@ -9,7 +9,7 @@ Este diretório reúne implementações didáticas, comparações entre métodos
 | Situação-problema | Método | Arquivo | Onde está a implementação | Estado |
 |---|---|---|---|---|
 | Resolver um sistema linear geral | Decomposição LU | [`matrizes_L_U.py`](matrizes_L_U.py) | `eliminacao()` e blocos de substituição | Executável |
-| Resolver um sistema pela redução da matriz aumentada | Gauss-Jordan | [`gauss_jordan.py`](gauss_jordan.py) | laços de eliminação e substituição | Requer correção |
+| Resolver um sistema pela redução da matriz aumentada | Gauss-Jordan | [`gauss_jordan.py`](gauss_jordan.py) | laços de eliminação e substituição | Executável |
 | Encontrar raízes simples e múltiplas | Newton-Raphson comum e modificado | [`newton_raphson.py`](newton_raphson.py) | `nr()` e `nr_mod()` | Executável |
 | Comparar Müller e Secante sem derivadas | Müller e Secante | [`muller_vs_secante.py`](muller_vs_secante.py) | `muller()` e `secante()` | Executável |
 | Maximizar uma função escalar unimodal | Razão Áurea e Interpolação Quadrática | [`otimizacao_ra_vs_iquad.py`](otimizacao_ra_vs_iquad.py) | `razao_aurea()` e `inter_quad()` | Executável |
