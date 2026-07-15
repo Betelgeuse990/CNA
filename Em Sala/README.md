@@ -15,7 +15,7 @@ Este diretório reúne implementações didáticas, comparações entre métodos
 | Maximizar uma função escalar unimodal | Razão Áurea e Interpolação Quadrática | [`otimizacao_ra_vs_iquad.py`](otimizacao_ra_vs_iquad.py) | `razao_aurea()` e `inter_quad()` | Executável |
 | Resolver um PVC de condução 1D | Tiro + Secante + Euler | [`tiro.py`](tiro.py) | `euler_integr()` e laço da Secante | Executável |
 | Resolver a equação de Blasius | Tiro + Secante + RK4 | [`Blasius.py`](Blasius.py) | `step_rk4()`, `integrate_rk4()` e laço da Secante | Versão didática |
-| Resolver Laplace 2D em uma aleta | Diferenças Finitas + Liebmann | [`liebmann.py`](liebmann.py) | `liebmann()` | Em desenvolvimento |
+| Resolver Laplace 2D em uma aleta | Diferenças Finitas + Liebmann | [`liebmann.py`](liebmann.py) | `liebmann()` | Executável |
 | Ajustar dados, otimizar lucro e encontrar vazões críticas | Mínimos quadrados + LU + Razão Áurea + Newton modificado | [`p1.py`](p1.py) | `determinando_coeficientes()`, `solver_LU()`, `razao_aurea()` e `nr_mod()` | Avaliação P1 |
 
 ## Descrição dos códigos
