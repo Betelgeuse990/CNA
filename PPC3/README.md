@@ -1,165 +1,98 @@
-# CNA PPC3 — Condução de Calor Transiente 1D
+# PPC3 — Condução de calor transiente unidimensional
 
-Este repositório contém a solução do **Programa Para Casa #3 (PPC3)** da disciplina de **Cálculo Numérico Aplicado**.
-(Desenvolvido por Estevão A. B. Silva)
-O projeto implementa uma simulação numérica de condução de calor transiente unidimensional usando:
+## Consulta rápida
 
-- método das diferenças finitas;
-- esquema implícito no tempo;
-- algoritmo de Thomas para sistemas tridiagonais;
-- validação com solução analítica no caso sem geração interna;
-- simulação com geração interna de calor;
-- visualizações gráficas e animações.
+| Pergunta | Resposta |
+|---|---|
+| Qual problema é resolvido? | Evolução transiente da temperatura em um domínio 1D, com e sem geração interna de calor |
+| Quais são os métodos? | Diferenças Finitas, esquema implícito no tempo e algoritmo de Thomas |
+| Onde está o algoritmo de Thomas? | [`CNA PPC3.ipynb`](CNA%20PPC3.ipynb), função `thomas_algorithm()` |
+| Onde estão os solucionadores térmicos? | `solve_heat_1d_no_generation()` e `solve_heat_1d_with_generation()` |
+| Como ocorre a validação? | Comparação com série analítica e recuperação do caso sem geração quando `q_dot → 0` |
 
-## Arquivo principal
+## Resumo operacional
 
-O notebook principal é:
+O notebook resolve a equação de condução transiente unidimensional. A derivada espacial é aproximada por diferenças centrais e a evolução temporal utiliza um esquema implícito, produzindo um sistema tridiagonal em cada passo. Esse sistema é resolvido por uma implementação explícita do algoritmo de Thomas.
 
-```text
-CNA PPC3.ipynb
-```
+São analisados os casos sem geração interna e com geração volumétrica uniforme. O notebook também produz perfis, mapas espaço-tempo e animações.
 
-Nele estão a explicação teórica, a implementação dos métodos numéricos, as validações e as visualizações.
-
-## Requisitos
-
-Para executar o notebook, é necessário ter Python instalado.
-
-As bibliotecas utilizadas são:
+## Estrutura
 
 ```text
-numpy
-matplotlib
-jupyter
+PPC3/
+├── README.md
+└── CNA PPC3.ipynb
 ```
 
-## Instalação
+## Métodos e rotinas
 
-Clone o repositório ou baixe os arquivos manualmente.
+| Método/etapa | Rotina | Finalidade |
+|---|---|---|
+| Thomas | `thomas_algorithm()` | resolver o sistema tridiagonal |
+| Montagem sem geração | `build_implicit_system_no_generation()` | construir diagonais e vetor independente |
+| Solução sem geração | `solve_heat_1d_no_generation()` | avançar a temperatura no tempo |
+| Solução analítica | `exact_solution_no_generation()` | fornecer referência para validação |
+| Montagem com geração | `build_implicit_system_with_generation()` | incorporar o termo fonte |
+| Solução com geração | `solve_heat_1d_with_generation()` | simular o campo térmico com fonte |
+
+## Dicionário de variáveis
+
+| Variável | Significado | Unidade | Tipo |
+|---|---|---|---|
+| `T` / `T_old` | temperaturas nodais | K ou °C | `numpy.ndarray` |
+| `alpha` | difusividade térmica | m²/s | `float` |
+| `k` | condutividade térmica | W/(m·K) | `float` |
+| `h` | coeficiente de convecção | W/(m²·K) | `float` |
+| `L` | comprimento do domínio | m | `float` |
+| `dt` | passo temporal | s | `float` |
+| `T_inf` | temperatura do ambiente | K ou °C | `float` |
+| `q_dot` | geração volumétrica de calor | W/m³ | `float` |
+| `lower`, `diag`, `upper` | diagonais do sistema | variável | `numpy.ndarray` |
+| `rhs` | vetor independente | variável | `numpy.ndarray` |
+
+## Dependências
+
+- Python 3;
+- Jupyter;
+- NumPy;
+- Matplotlib;
+- IPython, instalado juntamente com o Jupyter.
 
 ```bash
-git clone <url-do-repositorio>
-cd <nome-do-repositorio>
+python -m pip install -r requirements.txt
 ```
 
-Instale as dependências:
+## Entradas e saídas
+
+Os parâmetros físicos e numéricos são definidos nas primeiras células do notebook. As saídas incluem históricos de temperatura, perfis espaciais, mapas de calor, comparações entre modelos e animações incorporadas ao notebook.
+
+## Execução
+
+Na raiz do repositório:
 
 ```bash
-pip install numpy matplotlib jupyter
+jupyter notebook "PPC3/CNA PPC3.ipynb"
 ```
 
-Caso prefira usar um ambiente virtual:
+Execute as células sequencialmente, do início ao fim.
 
-```bash
-python -m venv .venv
-```
+## Validação metodológica
 
-No Windows:
+1. `thomas_algorithm()` é testado com um sistema tridiagonal de solução conhecida.
+2. A solução numérica sem geração é comparada com uma solução analítica em série.
+3. O termo de geração é reduzido a zero para verificar se o modelo recupera o caso anterior.
+4. O refinamento espacial e temporal permite avaliar a estabilidade dos resultados.
 
-```bash
-.venv\Scripts\activate
-```
+## Hipóteses do modelo
 
-No Linux/macOS:
-
-```bash
-source .venv/bin/activate
-```
-
-Depois instale as dependências:
-
-```bash
-pip install numpy matplotlib jupyter
-```
-
-## Como executar
-
-Abra o Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-Em seguida, abra o arquivo:
-
-```text
-CNA PPC3.ipynb
-```
-
-Execute as células em ordem, do início ao fim.
-
-## Estrutura do notebook
-
-O notebook está organizado em quatro partes principais.
-
-### 1. Solução sem geração interna
-
-Nesta etapa, é resolvido o problema de condução de calor transiente unidimensional sem geração interna.
-
-A discretização é feita pelo método das diferenças finitas, usando um esquema implícito no tempo. A cada passo de tempo, surge um sistema linear tridiagonal, resolvido pelo algoritmo de Thomas.
-
-Também é realizada uma comparação com a solução analítica para validar a implementação numérica.
-
-### 2. Solução com geração interna
-
-Nesta etapa, é acrescentado o termo de geração volumétrica de calor ao modelo.
-
-O objetivo é verificar como a presença de uma fonte interna de energia altera a distribuição de temperatura ao longo do domínio.
-
-Também é feita uma validação no limite em que a geração interna tende a zero, mostrando que o modelo com geração recupera o comportamento do caso sem geração.
-
-### 3. Representações visuais
-
-Nesta etapa, são testadas diferentes formas de representação visual da solução:
-
-- perfis de temperatura ao longo da posição;
-- mapas de calor espaço-tempo;
-- comparação entre os casos com e sem geração interna;
-- animação da faixa térmica do corpo.
-
-Essas visualizações ajudam a interpretar o comportamento transiente da solução e o efeito físico da geração interna.
-
-### 4. Valores físicos realistas
-
-Na etapa final, são adotados valores físicos simplificados e plausíveis para representar um combustível sólido de reator nuclear, especialmente dióxido de urânio.
-
-O objetivo não é construir uma simulação nuclear completa, mas aplicar o modelo numérico desenvolvido a um cenário fisicamente inspirado.
-
-## Resultados esperados
-
-Ao executar o notebook, são gerados:
-
-- solução numérica para o caso sem geração interna;
-- comparação com a solução analítica;
-- solução numérica para o caso com geração interna;
-- validação do limite de geração interna nula;
-- gráficos de perfis de temperatura;
-- mapas de calor;
-- animações da evolução térmica;
-- simulação final com valores físicos simplificados.
-
-## Observações sobre o modelo
-
-O modelo utilizado é unidimensional e simplificado.
-
-As principais hipóteses são:
-
-- condução de calor em uma direção espacial;
+- condução unidimensional;
+- propriedades térmicas constantes;
 - simetria adiabática em uma extremidade;
 - convecção na outra extremidade;
-- propriedades térmicas constantes;
-- geração interna uniforme no caso com termo fonte.
-
-Essas simplificações tornam o problema adequado para o estudo dos métodos numéricos envolvidos.
-
-## Algoritmo de Thomas
-
-O algoritmo de Thomas foi implementado manualmente para resolver sistemas tridiagonais.
-
-Não foram utilizadas bibliotecas prontas para resolver diretamente o sistema linear principal, pois o objetivo do trabalho é aplicar os conceitos numéricos estudados na disciplina.
+- geração interna uniforme quando ativada.
 
 ## Referências
 
-- International Atomic Energy Agency, *Thermophysical Properties of Materials for Nuclear Engineering*.
-- International Atomic Energy Agency, *Thermophysical Properties Database of Materials for Light Water Reactors and Heavy Water Reactors*.
-- Fink, J. K., *Thermophysical Properties of Uranium Dioxide*, Journal of Nuclear Materials.
+- CHAPRA, Steven C.; CANALE, Raymond P. **Métodos Numéricos para Engenharia**. 5. ed. McGraw-Hill, 2008.
+- FINK, J. K. Thermophysical properties of uranium dioxide. *Journal of Nuclear Materials*.
+- INTERNATIONAL ATOMIC ENERGY AGENCY. *Thermophysical Properties of Materials for Nuclear Engineering*.
