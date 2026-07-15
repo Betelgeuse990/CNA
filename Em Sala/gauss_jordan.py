@@ -1,32 +1,46 @@
-# Algorithm to solve a linear system using the Gauss-Jordan method
-
+# Sistema A X = B
 A = [
-    [3, 4, 5],
-    [6, 7, 8],
-    [9, 10, 1]
+    [3.0, 4.0, 5.0],
+    [6.0, 7.0, 8.0],
+    [9.0, 10.0, 1.0]
 ]
 
-n = len(A) ** 2    # Quantidade de elementos na matriz A
+B = [43.0, 73.0, 53.0]
 
-X = []
+n = len(A)
 
-B = [43, 73, 53]
+# Matriz aumentada [A | B]
+M = [A[i] + [B[i]] for i in range(n)]
 
-# ----------------- Eliminação progressiva -----------------
-for k in range(n - 1):
-    for i in range(k, n):
-        fator = A[i][k] / A[k][k]   # fator
-        for j in range(k, n):
-            A[i][j] = A[i][j] - fator * A[k][j]   # eliminando [A]  # ty:ignore[invalid-assignment]
-            A[i][k] = 0
-        B[i] = B[i] - fator * B[k]               # alterando {B}  # ty:ignore[invalid-assignment]
+for k in range(n):
+    # Pivoteamento parcial
+    pivot_row = max(range(k, n), key=lambda i: abs(M[i][k]))
 
+    if abs(M[pivot_row][k]) < 1e-12:
+        raise ValueError("O sistema não possui solução única.")
 
-# ----------------- Substituição regressiva -----------------
-X[n] = B[n] / A[n][n]   # começando de baixo
-for i in range(n - 1, 0, -1):
-    soma = B[i]         # subindo de baixo para cima
-    for j in range(i + 1, n + 1):
-        soma = soma - A[i][j] * X[j]  # soma
-    X[i] = soma / A[i][i]             # substituindo em {X}
+    # Coloca a melhor linha na posição do pivô
+    M[k], M[pivot_row] = M[pivot_row], M[k]
 
+    # Normaliza a linha do pivô
+    pivot = M[k][k]
+
+    for j in range(n + 1):
+        M[k][j] /= pivot
+
+    # Zera a coluna do pivô nas demais linhas
+    for i in range(n):
+        if i != k:
+            fator = M[i][k]
+
+            for j in range(n + 1):
+                M[i][j] -= fator * M[k][j]
+
+# A última coluna contém a solução
+X = [M[i][-1] for i in range(n)]
+
+print("Matriz reduzida:")
+for linha in M:
+    print(linha)
+
+print("Solução:", X)
