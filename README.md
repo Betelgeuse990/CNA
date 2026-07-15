@@ -1,80 +1,152 @@
 # Cálculo Numérico Aplicado (CNA)
 
-Repositório para as atividades da disciplina de Cálculo Numérico Aplicado (CNA).
-
 **Universidade de Brasília (UnB)**  
 **Faculdade de Tecnologia (FT)**  
 **Departamento de Engenharia Mecânica**  
 **Disciplina:** Cálculo Numérico Aplicado  
 **Semestre:** 2026/1  
-**Discente:** Estevão A.
+**Discente:** Estevão A. B. Silva
 
-## Apresentação
+## Sobre o repositório
 
-Este repositório foi criado para armazenar, organizar e documentar os trabalhos desenvolvidos na disciplina de **Cálculo Numérico Aplicado**. A proposta central é reunir, em um único ambiente versionado, as implementações computacionais, relatórios, gráficos e artefatos complementares produzidos ao longo da disciplina.
+Este repositório reúne implementações de métodos numéricos desenvolvidas em práticas para casa, exercícios de laboratório e avaliações da disciplina. Sua organização foi pensada como uma biblioteca de consulta: a partir do tipo de problema, o índice abaixo indica o método apropriado, o arquivo que contém a implementação e a principal função a ser consultada.
 
-O estudo de métodos numéricos é fundamental em engenharia, pois permite resolver computacionalmente problemas matemáticos para os quais nem sempre há solução analítica simples ou viável. Nesse contexto, o uso de um repositório público e bem estruturado favorece a organização, a reprodutibilidade dos resultados e a clareza da lógica implementada em cada prática.
+Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib são utilizados para operações básicas, armazenamento de dados e visualização, sem substituir a lógica dos métodos estudados.
 
-## Estrutura do repositório
+## Índice rápido: problema, método e código
 
-A organização do repositório segue uma divisão por prática, de modo que cada atividade possua seu próprio diretório, contendo os códigos, documentações e artefatos associados.
+### Sistemas lineares e ajuste de curvas
+
+| Situação-problema | Método | Código | Rotina principal | Estado |
+|---|---|---|---|---|
+| Resolver um sistema linear geral | Decomposição LU | [`matrizes_L_U.py`](Em%20Sala/matrizes_L_U.py) | `eliminacao()` e substituições triangular progressiva/regressiva | Executável |
+| Resolver um sistema linear por redução da matriz aumentada | Gauss-Jordan | [`gauss_jordan.py`](Em%20Sala/gauss_jordan.py) | laços de eliminação e substituição | Requer correção |
+| Ajustar uma parábola a dados experimentais | Equações normais dos mínimos quadrados + LU | [`p1.py`](Em%20Sala/p1.py) | `determinando_coeficientes()` e `solver_LU()` | Executável |
+| Resolver sistemas tridiagonais de condução 1D | Algoritmo de Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) | `thomas_algorithm()` | PPC concluído |
+
+### Raízes de equações e polinômios
+
+| Situação-problema | Método | Código | Rotina principal | Estado |
+|---|---|---|---|---|
+| Encontrar raízes simples de uma função com derivada disponível | Newton-Raphson | [`newton_raphson.py`](Em%20Sala/newton_raphson.py) | `nr()` | Executável |
+| Encontrar raízes múltiplas com maior eficiência | Newton-Raphson modificado | [`newton_raphson.py`](Em%20Sala/newton_raphson.py) | `nr_mod()` | Executável |
+| Encontrar raízes sem calcular derivadas | Método da Secante | [`muller_vs_secante.py`](Em%20Sala/muller_vs_secante.py) | `secante()` | Executável |
+| Comparar aproximação quadrática e secante | Müller e Secante | [`muller_vs_secante.py`](Em%20Sala/muller_vs_secante.py) | `muller()` e `secante()` | Executável |
+| Encontrar todas as raízes reais e complexas de um polinômio | Método de Bairstow | [`main.ipynb`](PPC2/main.ipynb) | `bairstow_roots()` | PPC concluído |
+
+### Otimização
+
+| Situação-problema | Método | Código | Rotina principal | Estado |
+|---|---|---|---|---|
+| Maximizar uma função escalar unimodal em um intervalo | Razão Áurea | [`otimizacao_ra_vs_iquad.py`](Em%20Sala/otimizacao_ra_vs_iquad.py) | `razao_aurea()` | Executável |
+| Estimar o máximo por uma parábola interpoladora | Interpolação Quadrática | [`otimizacao_ra_vs_iquad.py`](Em%20Sala/otimizacao_ra_vs_iquad.py) | `inter_quad()` | Executável |
+| Maximizar uma função de várias variáveis seguindo o gradiente | Aclive Máximo | [`CNA PPC4.ipynb`](PPC4/CNA%20PPC4.ipynb) | `aclive_maximo()` | PPC concluído |
+| Reduzir o zigue-zague da otimização por gradiente | Fletcher-Reeves | [`CNA PPC4.ipynb`](PPC4/CNA%20PPC4.ipynb) | `fletcher_reeves()` | PPC concluído |
+| Ajustar curvas e maximizar lucro a partir de dados experimentais | Mínimos quadrados + LU + Razão Áurea | [`p1.py`](Em%20Sala/p1.py) | `determinando_coeficientes()` e `razao_aurea()` | Avaliação P1 |
+
+### Equações diferenciais ordinárias e problemas de contorno
+
+| Situação-problema | Método | Código | Rotina principal | Estado |
+|---|---|---|---|---|
+| Integrar uma EDO com alta precisão | Runge-Kutta de quarta ordem | [`main.py`](PPC1/main.py) | `rk4()` e `simulate()` | PPC concluído |
+| Transformar um problema de contorno em problemas de valor inicial | Método do Tiro + Secante + Euler | [`tiro.py`](Em%20Sala/tiro.py) | `euler_integr()` e laço da Secante | Executável |
+| Resolver a equação de Blasius | Tiro + Secante + RK4 | [`Blasius.py`](Em%20Sala/Blasius.py) | `step_rk4()`, `integrate_rk4()` e laço da Secante | Versão didática |
+| Resolver Blasius e calcular grandezas da camada limite | Tiro + Secante + RK4 | [`Blasius_Friction.py`](PPC5/Blasius_Friction.py) | `metodo_tiro_secante()` | PPC concluído |
+
+### Equações diferenciais parciais e transferência de calor
+
+| Situação-problema | Método | Código | Rotina principal | Estado |
+|---|---|---|---|---|
+| Simular condução transiente unidimensional | Diferenças Finitas implícitas + Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) | `solve_heat_1d_no_generation()` e `solve_heat_1d_with_generation()` | PPC concluído |
+| Resolver a equação de Laplace em uma aleta 2D | Diferenças Finitas + Liebmann (Gauss-Seidel) | [`liebmann.py`](Em%20Sala/liebmann.py) | `liebmann()` | Em desenvolvimento |
+
+## Práticas para casa
+
+| Diretório | Situação-problema | Métodos principais | Arquivo principal |
+|---|---|---|---|
+| [`PPC1`](PPC1/) | Sedimentação de uma esfera em baixo Reynolds | RK4 e validação analítica | [`main.py`](PPC1/main.py) |
+| [`PPC2`](PPC2/) | Raízes de polinômios e autovalores | Bairstow | [`main.ipynb`](PPC2/main.ipynb) |
+| [`PPC3`](PPC3/) | Condução de calor transiente 1D | Diferenças Finitas implícitas e Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) |
+| [`PPC4`](PPC4/) | Otimização multidimensional | Aclive Máximo, Fletcher-Reeves e Interpolação Quadrática | [`CNA PPC4.ipynb`](PPC4/CNA%20PPC4.ipynb) |
+| [`PPC5`](PPC5/) | Equação de Blasius e camada limite | Tiro, Secante e RK4 | [`Blasius_Friction.py`](PPC5/Blasius_Friction.py) |
+| [`Em Sala`](Em%20Sala/) | Exercícios, protótipos e avaliações | Vários métodos | [`README.md`](Em%20Sala/README.md) |
+
+## Topologia do repositório
 
 ```text
 CNA/
-├── README.md
+├── README.md                  # Índice geral por problema e por método
+├── requirements.txt           # Dependências comuns
 ├── Em Sala/
+│   ├── README.md              # Catálogo dos códigos de laboratório
+│   └── *.py                   # Implementações didáticas e avaliações
 ├── PPC1/
-└── PPC2/
+│   ├── README.md
+│   ├── main.py
+│   └── results/
+├── PPC2/
+│   ├── README.md
+│   ├── main.ipynb
+│   └── outputs/
+├── PPC3/
+│   ├── README.md
+│   └── CNA PPC3.ipynb
+├── PPC4/
+│   ├── README.md
+│   ├── CNA PPC4.ipynb
+│   └── arquivos de resultados
+└── PPC5/
     ├── README.md
-    ├── main.ipynb
-    └── outputs/
+    ├── Blasius_Friction.py
+    ├── requirements.txt
+    └── resultados/
 ```
 
-### Descrição dos diretórios
+## Preparação do ambiente
 
-- **README.md**  
-  Documento principal do repositório. Contém a apresentação geral da disciplina, a topologia do projeto e a bibliografia geral.
+Na raiz do repositório, crie um ambiente virtual e instale as dependências comuns:
 
-- **Em Sala/**  
-  Diretório destinado a materiais, códigos e anotações produzidos durante as atividades em sala de aula.
+```bash
+python -m venv .venv
+```
 
-- **PPC1/**  (mexer depois!)
-  Diretório da primeira prática/programa para casa. Deve conter o código-fonte, README interno e eventuais arquivos auxiliares de entrada e saída.
+No Windows:
 
-- **PPC2/**  
-  Diretório da segunda prática/programa para casa. Contém a implementação do método de Bairstow, o notebook principal, gráficos gerados e o README interno específico da prática.
+```bash
+.venv\Scripts\activate
+```
 
-## Tecnologias utilizadas
+No Linux ou macOS:
 
-As implementações presentes neste repositório utilizam, prioritariamente:
+```bash
+source .venv/bin/activate
+```
 
-- **Python**
-- **Jupyter Notebook**
-- **NumPy**
-- **Matplotlib**
-- **Pandas** (quando necessário para organização/tabulação dos resultados)
+Depois:
 
-O uso dessas bibliotecas foi feito com foco em manipulação de dados, operações matemáticas básicas e geração de gráficos, sem recorrer a resolvedores prontos do problema numérico estudado.
+```bash
+python -m pip install -r requirements.txt
+```
 
-## Organização adotada
+Entre no diretório da atividade antes de executar scripts que geram arquivos, garantindo que as saídas sejam criadas na pasta correta. Para os notebooks:
 
-Cada prática é organizada com foco em:
+```bash
+jupyter notebook
+```
 
-- clareza do algoritmo implementado;
-- documentação interna específica;
-- reprodutibilidade dos resultados;
-- separação entre código principal e artefatos gerados;
-- facilidade de navegação e leitura por terceiros.
+As instruções específicas, entradas, saídas e validações estão documentadas no README de cada diretório.
 
-Sempre que necessário, gráficos, imagens, relatórios e outros resultados de processamento são armazenados dentro do diretório correspondente à prática.
+## Convenções adotadas
+
+- Cada PPC possui diretório e README próprios.
+- Resultados necessários à reprodução permanecem junto à atividade correspondente.
+- O diretório `Em Sala` contém exemplos didáticos, protótipos e códigos de avaliação; seu README informa o estado de cada implementação.
+- Funções-chave são indicadas nos índices para permitir acesso rápido ao trecho que implementa cada método.
+- Bibliotecas prontas não substituem a implementação dos algoritmos numéricos estudados.
 
 ## Bibliografia geral
 
 - CHAPRA, Steven C.; CANALE, Raymond P. **Métodos Numéricos para Engenharia**. 5. ed. McGraw-Hill, 2008.
 - GONTIJO, Rafael Gabler. **Notas de aula do curso de Cálculo Numérico Aplicado**. Universidade de Brasília, 2026.
-- HARRIS, Charles R. et al. **Array programming with NumPy**. *Nature*, v. 585, p. 357–362, 2020.
-- HUNTER, John D. **Matplotlib: A 2D graphics environment**. *Computing in Science & Engineering*, v. 9, n. 3, p. 90–95, 2007.
-  
-## Observações finais
-
-Este repositório está em desenvolvimento contínuo ao longo do semestre e será atualizado à medida que novas práticas forem implementadas, refinadas e documentadas.
+- HARRIS, Charles R. et al. Array programming with NumPy. *Nature*, v. 585, p. 357-362, 2020.
+- HUNTER, John D. Matplotlib: A 2D graphics environment. *Computing in Science & Engineering*, v. 9, n. 3, p. 90-95, 2007.

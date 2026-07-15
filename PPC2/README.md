@@ -1,5 +1,15 @@
 # PPC2 - Determinação de raízes de polinômios pelo método de Bairstow
 
+## Consulta rápida
+
+| Pergunta | Resposta |
+|---|---|
+| Qual problema é resolvido? | Determinação de todas as raízes reais e complexas conjugadas de polinômios e dos autovalores de um sistema dinâmico |
+| Qual é o método principal? | Método de Bairstow com deflação polinomial |
+| Onde está o método? | [`main.ipynb`](main.ipynb), função `bairstow_roots()` |
+| Onde está a análise de convergência? | Funções `analyze_bairstow_convergence()` e `scan_bairstow_plane()` |
+| O que é gerado? | Raízes, tabelas de erro e mapas na pasta [`outputs/`](outputs/) |
+
 ## Resumo operacional
 
 Esta prática tem como objetivo implementar computacionalmente o **método de Bairstow** para a determinação das raízes de polinômios de grau arbitrário, incluindo raízes reais e complexas conjugadas.
@@ -130,7 +140,9 @@ Os gráficos gerados devem ser armazenados no diretório `outputs/`.
 Exemplo de comandos:
 
 ```bash
-cd PPC2
+git clone https://github.com/Betelgeuse990/CNA.git
+cd CNA/PPC2
+python -m pip install -r ../requirements.txt
 jupyter notebook
 ```
 

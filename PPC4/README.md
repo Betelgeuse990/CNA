@@ -1,5 +1,15 @@
 # PPC #4 — Otimização Multidimensional
 
+## Consulta rápida
+
+| Pergunta | Resposta |
+|---|---|
+| Qual problema é resolvido? | Maximização de uma função quadrática de duas variáveis sem restrições |
+| Quais métodos são comparados? | Aclive Máximo e Gradientes Conjugados de Fletcher-Reeves |
+| Como é escolhido o passo? | Interpolação Quadrática, função `inter_quad()` |
+| Onde estão os métodos? | [`CNA PPC4.ipynb`](CNA%20PPC4.ipynb), funções `aclive_maximo()` e `fletcher_reeves()` |
+| O que é gerado? | Históricos `.dat`, amostras da função e gráfico comparativo das trajetórias |
+
 Implementação e comparação de dois métodos numéricos de otimização multidimensional sem restrições:
 
 * **Método do Aclive Máximo** (*Steepest Ascent*);
@@ -147,6 +157,23 @@ $$
 * NumPy;
 * Matplotlib.
 
+## Dicionário de variáveis principais
+
+| Variável | Significado | Unidade/domínio | Tipo |
+|---|---|---|---|
+| `ponto` | vetor corrente `[x, y]` | adimensional | `numpy.ndarray` |
+| `direcao` | direção de busca | adimensional | `numpy.ndarray` |
+| `gradiente` | gradiente da função objetivo | adimensional | `numpy.ndarray` |
+| `h` | passo da busca unidimensional | adimensional | `float` |
+| `beta` | coeficiente de Fletcher-Reeves | adimensional | `float` |
+| `tol_grad` | tolerância da norma do gradiente | adimensional | `float` |
+| `historico` | iterações, erros, passos, pontos e gradientes | adimensional | `numpy.ndarray` |
+
+## Entradas e saídas
+
+- **Entrada:** ponto inicial `(x₀, y₀)` solicitado na execução e tolerâncias definidas no notebook.
+- **Saídas:** `output1.dat`, `output2.dat`, `function.dat`, resumo no console e `trajetorias_ppc4.png`.
+
 ---
 
 ## Estrutura do projeto
@@ -187,8 +214,8 @@ x y f
 Clone o repositório:
 
 ```bash
-git clone URL_DO_REPOSITORIO
-cd NOME_DO_REPOSITORIO
+git clone https://github.com/Betelgeuse990/CNA.git
+cd CNA/PPC4
 ```
 
 Instale as dependências:
@@ -269,3 +296,12 @@ Os dois métodos foram capazes de localizar numericamente o máximo da função 
 O Aclive Máximo possui uma implementação mais simples, porém pode exigir um número **muito** maior de iterações devido ao comportamento oscilatório de sua trajetória.
 
 O método de Fletcher–Reeves apresentou maior eficiência para o problema analisado, utilizando direções conjugadas para reduzir o zigue-zague e avançar mais diretamente em direção ao ponto ótimo.
+
+## Validação metodológica
+
+O máximo analítico é `(2, 1)`, com `f(2, 1) = 2`. Os pontos e valores obtidos pelos dois métodos são comparados com essa referência. As trajetórias sobre as curvas de nível permitem verificar o zigue-zague do Aclive Máximo e o caminho conjugado do Fletcher-Reeves.
+
+## Bibliografia específica
+
+- CHAPRA, Steven C.; CANALE, Raymond P. **Métodos Numéricos para Engenharia**. 5. ed. McGraw-Hill, 2008.
+- GONTIJO, Rafael Gabler. **Notas de aula do curso de Cálculo Numérico Aplicado**. Universidade de Brasília, 2026.

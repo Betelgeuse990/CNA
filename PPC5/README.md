@@ -1,5 +1,16 @@
 # PPC #5 — Solução Numérica da Equação de Blasius
 
+## Consulta rápida
+
+| Pergunta | Resposta |
+|---|---|
+| Qual problema é resolvido? | Perfil de camada limite laminar sobre uma placa plana pela equação de Blasius |
+| Quais métodos são utilizados? | Método do Tiro, Secante e RK4 |
+| Onde está o núcleo do método? | [`Blasius_Friction.py`](Blasius_Friction.py), função `metodo_tiro_secante()` |
+| Onde está o RK4? | Funções `coefs_rk4()`, `step_rk4()` e `integrate_rk4()` |
+| Como ocorre a validação? | Comparação de `f''(0)` e `η₉₉` com valores clássicos da literatura |
+| O que é gerado? | Perfil CSV, três gráficos e resumo numérico em [`resultados/`](resultados/) |
+
 Programa desenvolvido para resolver numericamente a equação de Blasius:
 
 $$
@@ -143,10 +154,10 @@ $$
 
 ---
 
-## Estrutura do repositório
+## Estrutura do diretório
 
 ```text
-PPC5-Blasius/
+PPC5/
 │
 ├── Blasius_Friction.py
 ├── README.md
@@ -164,6 +175,21 @@ A pasta `resultados/` é criada automaticamente quando o programa é executado.
 
 ---
 
+## Dicionário de variáveis principais
+
+| Variável | Significado | Unidade/domínio | Tipo |
+|---|---|---|---|
+| `eta_values` | coordenada de similaridade | adimensional | `numpy.ndarray` |
+| `y_values` | perfis `[f, f', f'']` | adimensional | `numpy.ndarray` |
+| `s` / `s_convergido` | chute para `f''(0)` | adimensional | `float` |
+| `delta_eta` | passo de integração | adimensional | `float` |
+| `eta_max` | truncamento do domínio infinito | adimensional | `float` |
+| `tol` | tolerância do Método do Tiro | adimensional | `float` |
+| `u_inf` | velocidade do escoamento livre | m/s | `float` |
+| `nu` | viscosidade cinemática | m²/s | `float` |
+| `re_x` | Reynolds local | adimensional | `float` |
+| `cf` | coeficiente local de atrito | adimensional | `float` |
+
 ## Requisitos
 
 O programa foi desenvolvido em Python 3 e utiliza as bibliotecas:
@@ -173,7 +199,7 @@ numpy
 matplotlib
 ```
 
-Crie um arquivo chamado `requirements.txt` com o seguinte conteúdo:
+O arquivo `requirements.txt` já contém:
 
 ```text
 numpy
@@ -185,6 +211,12 @@ Instale as dependências com:
 ```bash
 pip install -r requirements.txt
 ```
+
+## Entradas e saídas
+
+- **Entradas:** chutes `s0` e `s1`, passo `delta_eta`, limite `eta_max`, tolerância e dados físicos definidos na função `main()`.
+- **Saídas no console:** chute convergido, erro final, `η₉₉`, `Re_x`, `C_f` e caminhos dos arquivos produzidos.
+- **Arquivos:** perfil numérico, resumo textual e três gráficos armazenados em `resultados/`.
 
 ---
 
@@ -410,6 +442,17 @@ f''(0),
 \qquad
 C_f.
 $$
+
+## Validação metodológica
+
+O parâmetro numérico `f''(0)` é comparado ao valor clássico aproximado `0.332057`. A espessura adimensional, obtida por `f'(η₉₉) = 0.99`, é comparada a `η₉₉ ≈ 4.92`. O arquivo `resumo_resultados.txt` registra os erros absolutos dessas comparações, além do resíduo final do Método do Tiro.
+
+## Bibliografia específica
+
+- BLASIUS, H. Grenzschichten in Flüssigkeiten mit kleiner Reibung. *Zeitschrift für Mathematik und Physik*, 1908.
+- SCHLICHTING, H.; GERSTEN, K. **Boundary-Layer Theory**. Springer.
+- WHITE, F. M. **Viscous Fluid Flow**. McGraw-Hill.
+- CHAPRA, Steven C.; CANALE, Raymond P. **Métodos Numéricos para Engenharia**. 5. ed. McGraw-Hill, 2008.
 
 ---
 
