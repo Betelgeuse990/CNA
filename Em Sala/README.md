@@ -100,7 +100,9 @@ Gráficos gerados:
 
 Os arquivos `.dat` contêm as colunas:
 
+```text
 t x1 y1 vx1 vy1 x2 y2 vx2 vy2 E
+```
 
 ### `Blasius.py` — versão didática do solucionador de Blasius
 
