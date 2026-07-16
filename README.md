@@ -20,7 +20,7 @@ Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib 
 | Situação-problema | Método | Código | Rotina principal | Estado |
 |---|---|---|---|---|
 | Resolver um sistema linear geral | Decomposição LU | [`matrizes_L_U.py`](Em%20Sala/matrizes_L_U.py) | `eliminacao()` e substituições triangular progressiva/regressiva | Executável |
-| Resolver um sistema linear por redução da matriz aumentada | Gauss-Jordan | [`gauss_jordan.py`](Em%20Sala/gauss_jordan.py) | laços de eliminação e substituição | Executável |
+| Resolver um sistema linear por redução da matriz aumentada | Gauss-Jordan com pivoteamento parcial | [`gauss_jordan.py`](Em%20Sala/gauss_jordan.py) | normalização da linha pivô e eliminação acima e abaixo da diagonal | Executável |
 | Ajustar uma parábola a dados experimentais | Equações normais dos mínimos quadrados + LU | [`p1.py`](Em%20Sala/p1.py) | `determinando_coeficientes()` e `solver_LU()` | Executável |
 | Resolver sistemas tridiagonais de condução 1D | Algoritmo de Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) | `thomas_algorithm()` | PPC concluído |
 
