@@ -14,6 +14,7 @@ Este diretório reúne implementações didáticas, comparações entre métodos
 | Comparar Müller e Secante sem derivadas | Müller e Secante | [`muller_vs_secante.py`](muller_vs_secante.py) | `muller()` e `secante()` | Executável |
 | Maximizar uma função escalar unimodal | Razão Áurea e Interpolação Quadrática | [`otimizacao_ra_vs_iquad.py`](otimizacao_ra_vs_iquad.py) | `razao_aurea()` e `inter_quad()` | Executável |
 | Resolver um PVC de condução 1D | Tiro + Secante + Euler | [`tiro.py`](tiro.py) | `euler_integr()` e laço da Secante | Executável |
+| Comparar integradores em um problema gravitacional de dois corpos | Euler explícito e Leapfrog/Velocity-Verlet | [`euler_vs_leapfrog.py`](euler_vs_leapfrog.py) | `integrate_euler()` e `integrate_leapfrog()` | Executável |
 | Resolver a equação de Blasius | Tiro + Secante + RK4 | [`Blasius.py`](Blasius.py) | `step_rk4()`, `integrate_rk4()` e laço da Secante | Versão didática |
 | Resolver Laplace 2D em uma aleta | Diferenças Finitas + Liebmann | [`liebmann.py`](liebmann.py) | `liebmann()` | Executável |
 | Ajustar dados, otimizar lucro e encontrar vazões críticas | Mínimos quadrados + LU + Razão Áurea + Newton modificado | [`p1.py`](p1.py) | `determinando_coeficientes()`, `solver_LU()`, `razao_aurea()` e `nr_mod()` | Avaliação P1 |
@@ -30,10 +31,12 @@ Este diretório reúne implementações didáticas, comparações entre métodos
 
 ### `gauss_jordan.py` — eliminação de Gauss-Jordan
 
-- **Problema pretendido:** resolver um sistema linear por operações elementares.
-- **Método:** eliminação sobre a matriz e substituição regressiva.
-- **Estado:** o arquivo atualmente gera `IndexError`, pois usa o número de elementos da matriz como ordem do sistema e não inicializa corretamente o vetor-solução. Não deve ser usado como referência pronta antes da correção.
-- **Execução para diagnóstico:** `python gauss_jordan.py`.
+- **Problema:** resolver um sistema linear geral `A @ X = B` por operações elementares sobre a matriz aumentada.
+- **Método:** Gauss-Jordan com pivoteamento parcial, normalização da linha pivô e eliminação dos elementos acima e abaixo da diagonal.
+- **Entrada:** matriz `A` e vetor independente `B` definidos no início do arquivo.
+- **Saída:** matriz aumentada reduzida e vetor-solução.
+- **Observação:** o algoritmo verifica pivôs numericamente nulos e informa quando o sistema não possui solução única.
+- **Execução:** `python gauss_jordan.py`.
 
 ### `newton_raphson.py` — raízes simples e múltiplas
 
@@ -70,6 +73,35 @@ O arquivo [`newton_raphson_mod.py`](newton_raphson_mod.py) é atualmente uma có
 - **Saída:** derivada inicial estimada, temperatura final, erro e iterações.
 - **Execução:** `python tiro.py`.
 
+### `euler_vs_leapfrog.py` — integração do problema gravitacional de dois corpos
+
+- **Problema:** simular o movimento orbital de dois corpos submetidos à atração gravitacional mútua.
+- **Modelo físico:** a aceleração de cada corpo é calculada pela lei da gravitação universal de Newton, formando um sistema vetorial de EDOs de segunda ordem.
+- **Métodos:** Euler explícito e Leapfrog na formulação Velocity-Verlet.
+- **Objetivo do teste:** comparar trajetórias, espaço de fase e conservação da energia mecânica ao longo do tempo.
+- **Rotinas de integração:** `acc()`, `integrate_euler()` e `integrate_leapfrog()`.
+- **Rotina física:** `mechanical_energy()` calcula a soma das energias cinética e potencial.
+- **Salvamento:** `save_results()` grava tempo, posições, velocidades e energia.
+- **Gráficos:** `plot_trajectory()`, `plot_phase_space()` e `plot_energy_comparison()`.
+- **Execução:** `python euler_vs_leapfrog.py`.
+
+Arquivos numéricos gerados:
+
+- `euler.dat`;
+- `leapfrog.dat`.
+
+Gráficos gerados:
+
+- `euler_trajectory.png`;
+- `leapfrog_trajectory.png`;
+- `euler_phase_space.png`;
+- `leapfrog_phase_space.png`;
+- `energy_comparison.png`.
+
+Os arquivos `.dat` contêm as colunas:
+
+t x1 y1 vx1 vy1 x2 y2 vx2 vy2 E
+
 ### `Blasius.py` — versão didática do solucionador de Blasius
 
 - **Problema:** satisfazer as condições de contorno da equação de Blasius.
@@ -99,8 +131,8 @@ O arquivo [`newton_raphson_mod.py`](newton_raphson_mod.py) é atualmente uma có
 ## Dependências
 
 - Python 3;
-- NumPy para `matrizes_L_U.py`, `tiro.py`, `Blasius.py`, `liebmann.py` e `p1.py`;
-- Matplotlib para o pós-processamento de `liebmann.py`.
+- NumPy para `matrizes_L_U.py`, `tiro.py`, `Blasius.py`, `euler_vs_leapfrog.py`, `liebmann.py` e `p1.py`;
+- Matplotlib para `euler_vs_leapfrog.py` e para o pós-processamento de `liebmann.py`.
 
 Instale as dependências comuns a partir da raiz:
 
