@@ -20,7 +20,7 @@ Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib 
 | Situação-problema | Método | Código | Rotina principal | Estado |
 |---|---|---|---|---|
 | Resolver um sistema linear geral | Decomposição LU | [`matrizes_L_U.py`](Em%20Sala/matrizes_L_U.py) | `eliminacao()` e substituições triangular progressiva/regressiva | Executável |
-| Resolver um sistema linear por redução da matriz aumentada | Gauss-Jordan | [`gauss_jordan.py`](Em%20Sala/gauss_jordan.py) | laços de eliminação e substituição | Requer correção |
+| Resolver um sistema linear por redução da matriz aumentada | Gauss-Jordan | [`gauss_jordan.py`](Em%20Sala/gauss_jordan.py) | laços de eliminação e substituição | Executável |
 | Ajustar uma parábola a dados experimentais | Equações normais dos mínimos quadrados + LU | [`p1.py`](Em%20Sala/p1.py) | `determinando_coeficientes()` e `solver_LU()` | Executável |
 | Resolver sistemas tridiagonais de condução 1D | Algoritmo de Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) | `thomas_algorithm()` | PPC concluído |
 
@@ -48,17 +48,31 @@ Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib 
 
 | Situação-problema | Método | Código | Rotina principal | Estado |
 |---|---|---|---|---|
-| Integrar uma EDO com alta precisão | Runge-Kutta de quarta ordem | [`main.py`](PPC1/main.py) | `rk4()` e `simulate()` | PPC concluído |
+| Integrar uma EDO de primeira ordem com alta precisão | Runge-Kutta de quarta ordem | [`main.py`](PPC1/main.py) | `rk4()` e `simulate()` | PPC concluído |
+| Simular o movimento gravitacional de dois corpos e comparar conservação de energia | Euler explícito e Leapfrog/Velocity-Verlet | [`euler_vs_leapfrog.py`](Em%20Sala/euler_vs_leapfrog.py) | `integrate_euler()` e `integrate_leapfrog()` | Executável |
 | Transformar um problema de contorno em problemas de valor inicial | Método do Tiro + Secante + Euler | [`tiro.py`](Em%20Sala/tiro.py) | `euler_integr()` e laço da Secante | Executável |
 | Resolver a equação de Blasius | Tiro + Secante + RK4 | [`Blasius.py`](Em%20Sala/Blasius.py) | `step_rk4()`, `integrate_rk4()` e laço da Secante | Versão didática |
 | Resolver Blasius e calcular grandezas da camada limite | Tiro + Secante + RK4 | [`Blasius_Friction.py`](PPC5/Blasius_Friction.py) | `metodo_tiro_secante()` | PPC concluído |
+
+### Salvamento de dados e visualização
+
+| Necessidade | Código de referência | Rotina ou trecho | Saída |
+|---|---|---|---|
+| Salvar posição, velocidade e energia de uma integração temporal | [`euler_vs_leapfrog.py`](Em%20Sala/euler_vs_leapfrog.py) | `save_results()` | arquivos `.dat` |
+| Plotar trajetórias orbitais | [`euler_vs_leapfrog.py`](Em%20Sala/euler_vs_leapfrog.py) | `plot_trajectory()` | PNG |
+| Plotar espaço de fase | [`euler_vs_leapfrog.py`](Em%20Sala/euler_vs_leapfrog.py) | `plot_phase_space()` | PNG |
+| Comparar conservação de energia entre integradores | [`euler_vs_leapfrog.py`](Em%20Sala/euler_vs_leapfrog.py) | `plot_energy_comparison()` | PNG |
+| Salvar tabelas e curvas unidimensionais | [`Blasius_Friction.py`](PPC5/Blasius_Friction.py) | `salvar_perfil_csv()` e `gerar_graficos()` | CSV, TXT e PNG |
+| Salvar e recarregar históricos iterativos | [`CNA PPC4.ipynb`](PPC4/CNA%20PPC4.ipynb) | `salvar_historico()` e `plotar_trajetorias()` | DAT e PNG |
+| Plotar campos bidimensionais e curvas de nível | [`liebmann.py`](Em%20Sala/liebmann.py) | `post_process()` | DAT e PNG |
+| Plotar várias soluções numéricas e analíticas | [`main.py`](PPC1/main.py) | `save_plot()` e funções `item*()` | PNG |
 
 ### Equações diferenciais parciais e transferência de calor
 
 | Situação-problema | Método | Código | Rotina principal | Estado |
 |---|---|---|---|---|
 | Simular condução transiente unidimensional | Diferenças Finitas implícitas + Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) | `solve_heat_1d_no_generation()` e `solve_heat_1d_with_generation()` | PPC concluído |
-| Resolver a equação de Laplace em uma aleta 2D | Diferenças Finitas + Liebmann (Gauss-Seidel) | [`liebmann.py`](Em%20Sala/liebmann.py) | `liebmann()` | Em desenvolvimento |
+| Resolver a equação de Laplace em uma aleta 2D | Diferenças Finitas + Liebmann (Gauss-Seidel) | [`liebmann.py`](Em%20Sala/liebmann.py) | `liebmann()`, `mesh_study()` e `post_process()` | Executável |
 
 ## Práticas para casa
 
