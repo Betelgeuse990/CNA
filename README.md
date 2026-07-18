@@ -65,6 +65,7 @@ Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib 
 | Salvar tabelas e curvas unidimensionais | [`Blasius_Friction.py`](PPC5/Blasius_Friction.py) | `salvar_perfil_csv()` e `gerar_graficos()` | CSV, TXT e PNG |
 | Salvar e recarregar históricos iterativos | [`CNA PPC4.ipynb`](PPC4/CNA%20PPC4.ipynb) | `salvar_historico()` e `plotar_trajetorias()` | DAT e PNG |
 | Plotar campos bidimensionais e curvas de nível | [`liebmann.py`](Em%20Sala/liebmann.py) | `post_process()` | DAT e PNG |
+| Salvar estudos de relaxação, refinamento de malha e campos 2D | [`Liebmann-Gauss-Seidel.py`](PPC6/Liebmann-Gauss-Seidel.py) | `relaxation_study()`, `mesh_study()` e `post_process()` | DAT e PNG |
 | Plotar várias soluções numéricas e analíticas | [`main.py`](PPC1/main.py) | `save_plot()` e funções `item*()` | PNG |
 
 ### Equações diferenciais parciais e transferência de calor
@@ -73,6 +74,7 @@ Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib 
 |---|---|---|---|---|
 | Simular condução transiente unidimensional | Diferenças Finitas implícitas + Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) | `solve_heat_1d_no_generation()` e `solve_heat_1d_with_generation()` | PPC concluído |
 | Resolver a equação de Laplace em uma aleta 2D | Diferenças Finitas + Liebmann (Gauss-Seidel) | [`liebmann.py`](Em%20Sala/liebmann.py) | `liebmann()`, `mesh_study()` e `post_process()` | Executável |
+| Resolver a equação de Laplace em uma aleta 2D e comparar métodos de solução | Diferenças Finitas + Gauss + Liebmann + sobre-relaxação | [`Liebmann-Gauss-Seidel.py`](PPC6/Liebmann-Gauss-Seidel.py) | `build_system()`, `gaussian_elimination()`, `liebmann()` e `analytical_solution()` | PPC concluído |
 
 ## Práticas para casa
 
@@ -83,6 +85,7 @@ Os algoritmos numéricos foram implementados explicitamente. NumPy e Matplotlib 
 | [`PPC3`](PPC3/) | Condução de calor transiente 1D | Diferenças Finitas implícitas e Thomas | [`CNA PPC3.ipynb`](PPC3/CNA%20PPC3.ipynb) |
 | [`PPC4`](PPC4/) | Otimização multidimensional | Aclive Máximo, Fletcher-Reeves e Interpolação Quadrática | [`CNA PPC4.ipynb`](PPC4/CNA%20PPC4.ipynb) |
 | [`PPC5`](PPC5/) | Equação de Blasius e camada limite | Tiro, Secante e RK4 | [`Blasius_Friction.py`](PPC5/Blasius_Friction.py) |
+| [`PPC6`](PPC6/) | Condução de calor permanente 2D em uma aleta | Diferenças Finitas, Gauss, Liebmann e sobre-relaxação | [`Liebmann-Gauss-Seidel.py`](PPC6/Liebmann-Gauss-Seidel.py) |
 | [`Em Sala`](Em%20Sala/) | Exercícios, protótipos e avaliações | Vários métodos | [`README.md`](Em%20Sala/README.md) |
 
 ## Topologia do repositório
@@ -109,10 +112,14 @@ CNA/
 │   ├── README.md
 │   ├── CNA PPC4.ipynb
 │   └── arquivos de resultados
-└── PPC5/
+├── PPC5/
+│   ├── README.md
+│   ├── Blasius_Friction.py
+│   ├── requirements.txt
+│   └── resultados/
+└── PPC6/
     ├── README.md
-    ├── Blasius_Friction.py
-    ├── requirements.txt
+    ├── Liebmann-Gauss-Seidel.py
     └── resultados/
 ```
 
